@@ -24,6 +24,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
 public abstract class Utils {
@@ -273,9 +274,6 @@ public abstract class Utils {
 	}
 
 	public static boolean isHA(Pokemon pokemon) {
-		if (pokemon.getForm().getAbilities().getMapping().get(Priority.LOW).size() != 1) {
-			return false;
-		}
 		String ability =
 				pokemon.getForm().getAbilities().getMapping().get(Priority.LOW).get(0).getTemplate().getName();
 
@@ -312,5 +310,15 @@ public abstract class Utils {
 		tag.putString("id", id);
 		tag.putInt("Count", 1);
 		return ItemStack.of(tag);
+	}
+
+	public static int amountOfFullIVS(Pokemon pokemon) {
+		AtomicInteger amount = new AtomicInteger();
+		pokemon.getIvs().forEach((el) -> {
+			if (el.getValue() == 31) {
+				amount.addAndGet(1);
+			}
+		});
+		return amount.get();
 	}
 }

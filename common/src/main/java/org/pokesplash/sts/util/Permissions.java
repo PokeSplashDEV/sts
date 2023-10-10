@@ -20,7 +20,7 @@ public class Permissions {
 	public Permissions() {
 		permissions = new HashMap<>();
 		// Add you permissions here.
-		createPermission("ExamplePermission", "template.command.example", 1);
+		createPermission("BasePermission", "sts.base", 1);
 	}
 
 	/**
