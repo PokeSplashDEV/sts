@@ -1,14 +1,38 @@
-# CobblemonTemplate
-![GitHub](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-A mod template that can be used to build plugins for [Cobblemon](https://cobblemon.com/).
+# Cobblemon STS
+
+![GitHub](https://img.shields.io/github/license/PokeSplashDEV/sts)
+
+A mod for [Cobblemon](https://cobblemon.com/) that allows players to sell their Pokemon to the server.
+## Features
+
+- Get paid for selling Pokemon.
+- Configurations for:
+    - Base Price
+    - Hidden Ability
+    - Shiny
+    - Legendary
+    - Ultra Beasts
 
 
-## What does this template offer?
+## Installation
 
-This template offers a pre-built project with dependencies for [Gooeylibs](), [Cobblemon]() and [Impactor]() that you can choose to use or remove. It also has an array of useful utilities for creating commands, file IO and more.
+This mod can be ran on both [Fabric](https://fabricmc.net/) and [Forge](https://files.minecraftforge.net/net/minecraftforge/forge/). It has a few dependencies:
 
-This will be maintained to the latest Cobblemon version. For info on how to use, see the [wiki](https://github.com/PokeSplashDEV/CobblemonTemplate/wiki).
+- [Cobblemon](https://modrinth.com/mod/cobblemon)
+- [Impactor](https://modrinth.com/mod/impactor)
+- [Gooeylibs](https://github.com/NickImpact/GooeyLibs)
+
+    
+## Screenshots
+
+![STS Screen](https://i.imgur.com/u0nYRhk.png)
+![STS Purchase Screen](https://i.imgur.com/bh8AEos.png)
+## Documentation
+
+[See the wiki.](https://github.com/PokeSplashDEV/sts/wiki)
+
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
@@ -16,5 +40,5 @@ This will be maintained to the latest Cobblemon version. For info on how to use,
 
 ## Authors
 
-- [bencrow11](https://github.com/bencrow11)
-
+- [@bencrow11](https://www.github.com/bencrow11)
+- [@poqdavid](https://www.github.com/poqdavid)
