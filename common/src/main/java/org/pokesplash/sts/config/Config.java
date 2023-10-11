@@ -6,15 +6,18 @@ import org.pokesplash.sts.util.Utils;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Config class.
+ */
 public class Config {
-	private double basePrice;
-	private double hiddenAbilityBoost;
-	private double legendaryBoost;
-	private double ultraBeastBoost;
-	private double shinyBoost;
-	private double moneyPerIV;
-	private double moneyPerLevel;
-	private double perfectIVBoost;
+	private double basePrice; // Base price of all Pokemon.
+	private double hiddenAbilityBoost; // Added price for HA.
+	private double legendaryBoost; // Added price for legendary.
+	private double ultraBeastBoost; // Added price for UBs.
+	private double shinyBoost; // Added price for Shiny.
+	private double moneyPerIV; // Added price per full iV.
+	private double moneyPerLevel; // Added price per level.
+	private double perfectIVBoost; // Added price for a full IV Pokemon.
 
 	public Config() {
 		basePrice = 100;
@@ -26,6 +29,10 @@ public class Config {
 		moneyPerLevel = 1;
 		perfectIVBoost = 50;
 	}
+
+	/**
+	 * Getters
+	 */
 
 	public double getBasePrice() {
 		return basePrice;
@@ -59,6 +66,9 @@ public class Config {
 		return perfectIVBoost;
 	}
 
+	/**
+	 * Method to read or write the config file.
+	 */
 	public void init() {
 		CompletableFuture<Boolean> futureRead = Utils.readFileAsync("/config/sts/", "config.json", el -> {
 			Gson gson = Utils.newGson();

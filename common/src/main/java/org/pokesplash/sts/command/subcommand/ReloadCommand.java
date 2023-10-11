@@ -6,6 +6,7 @@ import com.mojang.brigadier.tree.LiteralCommandNode;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
+import org.pokesplash.sts.STS;
 import org.pokesplash.sts.util.Subcommand;
 import org.pokesplash.sts.util.Utils;
 
@@ -21,16 +22,8 @@ public class ReloadCommand extends Subcommand {
 	 */
 	@Override
 	public LiteralCommandNode<CommandSourceStack> build() {
-		return Commands.literal("sub")
-				.executes(this::showUsage)
-				.then(Commands.argument("player", StringArgumentType.string())
-						.suggests((ctx, builder) -> {
-							for (String name : ctx.getSource().getOnlinePlayerNames()) {
-								builder.suggest(name);
-							}
-							return builder.buildFuture();
-						})
-						.executes(this::run))
+		return Commands.literal("reload")
+				.executes(this::run)
 				.build();
 	}
 
@@ -42,7 +35,9 @@ public class ReloadCommand extends Subcommand {
 	@Override
 	public int run(CommandContext<CommandSourceStack> context) {
 
-		context.getSource().sendSystemMessage(Component.literal(Utils.formatMessage("subcommand ran!",
+		STS.init();
+
+		context.getSource().sendSystemMessage(Component.literal(Utils.formatMessage("Reloaded STS.",
 				context.getSource().isPlayer())));
 
 		return 1;

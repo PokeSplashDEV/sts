@@ -26,7 +26,9 @@ import net.minecraft.world.item.Items;
 import org.pokesplash.sts.STS;
 import org.pokesplash.sts.api.Price;
 import org.pokesplash.sts.command.subcommand.ReloadCommand;
+import org.pokesplash.sts.ui.MainScreen;
 import org.pokesplash.sts.util.BaseCommand;
+import org.pokesplash.sts.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,70 +53,16 @@ public class STSCommand extends BaseCommand {
 	@Override
 	public int run(CommandContext<CommandSourceStack> context) {
 
+		// Only players can run the command.
 		if (!context.getSource().isPlayer()) {
 			context.getSource().sendSystemMessage(Component.literal("This command must be ran by a player!"));
 		}
 
 		ServerPlayer sender = context.getSource().getPlayer();
 
-		assert sender != null;
 		PlayerPartyStore party = Cobblemon.INSTANCE.getStorage().getParty(sender);
 
-		List<Button> pokemon = new ArrayList<>();
-		for (int x=0; x < 6; x++) {
-			Pokemon mon = party.get(x);
-
-			if (mon == null) {
-				continue;
-			}
-
-			Collection<String> lore = new ArrayList<>();
-			lore.add("§bPrice: §e" + Price.getPrice(mon));
-
-			String title = mon.getShiny() ? "§e" + mon.getDisplayName().getString() :
-					"§b" + mon.getDisplayName().getString();
-
-			GooeyButton button = GooeyButton.builder()
-					.display(PokemonItem.from(mon, 1))
-					.title(title)
-					.lore(lore)
-					.onClick((e) -> {
-						// TODO stuff
-					})
-					.build();
-
-			pokemon.add(button);
-		}
-
-		Button ball = GooeyButton.builder()
-				.display(new ItemStack(CobblemonItems.POKE_BALL, 1))
-				.title("")
-				.build();
-
-		int spaces = 6 - pokemon.size();
-
-		for (int x=0; x < spaces; x++) {
-			pokemon.add(ball);
-		}
-
-		Button filler = GooeyButton.builder()
-				.display(new ItemStack(Items.WHITE_STAINED_GLASS_PANE, 1)) // TODO Change this with lang
-				.hideFlags(FlagType.All)
-				.lore(new ArrayList<>())
-				.title("")
-				.build();
-
-		PlaceholderButton placeholder = new PlaceholderButton();
-
-		ChestTemplate template = ChestTemplate.builder(3)
-				.rectangle(1, 1, 1, 7, placeholder)
-				.fill(filler)
-				.build();
-
-		LinkedPage page = PaginationHelper.createPagesFromPlaceholders(template, pokemon, null);
-		page.setTitle("STS"); // TODO lang
-
-		UIManager.openUIForcefully(sender, page);
+		UIManager.openUIForcefully(sender, new MainScreen().getPage(party)); // Open UI.
 
 		return 1;
 	}

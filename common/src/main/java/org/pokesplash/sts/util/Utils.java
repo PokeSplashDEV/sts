@@ -280,29 +280,9 @@ public abstract class Utils {
 		return pokemon.getAbility().getName().equalsIgnoreCase(ability);
 	}
 
-	public static String formatPlaceholders(String message, double minPrice, String listing,
-	                                        String seller, String buyer) {
-		String newMessage = message;
-		if (message == null) {
-			return "";
-		}
-
-		if (listing != null) {
-			newMessage = newMessage.replaceAll("\\{listing\\}", listing);
-		}
-
-		if (seller != null) {
-			newMessage = newMessage.replaceAll("\\{seller\\}", seller);
-		}
-
-		if (buyer != null) {
-			newMessage = newMessage.replaceAll("\\{buyer\\}", buyer);
-		}
-
-		return newMessage
-				.replaceAll("\\{min_price\\}", "" + minPrice)
-				.replaceAll("\\{max_listings\\}", "" + "FORMAT ME")
-				.replaceAll("\\{max_price\\}", "" + "FORMAT ME");
+	public static String formatPlaceholders(String message, double price, Pokemon pokemon) {
+		return message.replaceAll("\\{price\\}", String.valueOf(price))
+				.replaceAll("\\{pokemon\\}", pokemon.getDisplayName().getString());
 	}
 
 	public static ItemStack parseItemId(String id) {
