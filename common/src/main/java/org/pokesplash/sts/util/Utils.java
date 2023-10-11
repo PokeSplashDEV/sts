@@ -275,8 +275,6 @@ public abstract class Utils {
 
 	public static boolean isHA(Pokemon pokemon) {
 
-		System.out.println();
-
 		if (pokemon.getForm().getAbilities().getMapping().get(Priority.LOW) == null ||
 				pokemon.getForm().getAbilities().getMapping().get(Priority.LOW).size() != 1) {
 			return false;
