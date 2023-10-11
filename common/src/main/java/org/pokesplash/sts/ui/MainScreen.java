@@ -52,7 +52,12 @@ public class MainScreen {
 
 			// Adds price to lore.
 			Collection<String> lore = new ArrayList<>();
-			lore.add("§bPrice: §e" + Price.getPrice(mon));
+
+			if (Price.getPrice(mon) <= 0) {
+				lore.add("§cThis Pokemon can not be sold.");
+			} else {
+				lore.add("§bPrice: §e" + Price.getPrice(mon));
+			}
 
 			// Generates title, based on if the Pokemon is shiny or not.
 			String title = mon.getShiny() ? "§e" + mon.getDisplayName().getString() :
@@ -65,8 +70,10 @@ public class MainScreen {
 					.lore(lore)
 					.onClick((e) -> {
 						// Opens the sell page.
-						ServerPlayer player = e.getPlayer();
-						UIManager.openUIForcefully(player, new SellScreen().getPage(mon));
+						if (Price.getPrice(mon) > 0) {
+							ServerPlayer player = e.getPlayer();
+							UIManager.openUIForcefully(player, new SellScreen().getPage(mon));
+						}
 					})
 					.build();
 
