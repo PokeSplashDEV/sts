@@ -68,7 +68,7 @@ public class SellScreen {
 							UIManager.closeUI(sender);
 							e.getPlayer().sendSystemMessage(Component.literal(
 									Utils.formatPlaceholders(STS.lang.getSuccessMessage(), price, pokemon)));
-							StsEvents.SELL.trigger(new SellEvent(sender, pokemon));
+							StsEvents.SELL.trigger(new SellEvent(sender.getUUID(), pokemon));
 						} else {
 							// Otherwise, revert transaction and send the party removal failed message.
 							ImpactorService.remove(ImpactorService.getAccount(e.getPlayer().getUUID()),

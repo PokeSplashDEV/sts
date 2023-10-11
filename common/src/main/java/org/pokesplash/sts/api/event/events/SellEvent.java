@@ -3,11 +3,13 @@ package org.pokesplash.sts.api.event.events;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.server.level.ServerPlayer;
 
+import java.util.UUID;
+
 /**
  * Class that is used to trigger a sell event.
  */
 public class SellEvent {
-	private ServerPlayer seller; // The player who sold the Pokemon.
+	private UUID seller; // The player who sold the Pokemon.
 	private Pokemon pokemon; // The Pokemon that was sold.
 
 	/**
@@ -15,7 +17,7 @@ public class SellEvent {
 	 * @param seller Seller
 	 * @param pokemon Pokemon sold.
 	 */
-	public SellEvent(ServerPlayer seller, Pokemon pokemon) {
+	public SellEvent(UUID seller, Pokemon pokemon) {
 		this.seller = seller;
 		this.pokemon = pokemon;
 	}
@@ -24,7 +26,7 @@ public class SellEvent {
 	 * Getters
 	 */
 
-	public ServerPlayer getSeller() {
+	public UUID getSeller() {
 		return seller;
 	}
 
