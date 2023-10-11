@@ -275,8 +275,6 @@ public abstract class Utils {
 
 	public static boolean isHA(Pokemon pokemon) {
 
-		System.out.println("1");
-
 		System.out.println();
 
 		if (pokemon.getForm().getAbilities().getMapping().get(Priority.LOW) == null ||
@@ -284,12 +282,8 @@ public abstract class Utils {
 			return false;
 		}
 
-		System.out.println("2");
-
 		String ability =
 				pokemon.getForm().getAbilities().getMapping().get(Priority.LOW).get(0).getTemplate().getName();
-
-		System.out.println("3");
 
 		return pokemon.getAbility().getName().equalsIgnoreCase(ability);
 	}
