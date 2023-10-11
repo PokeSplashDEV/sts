@@ -15,6 +15,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import org.pokesplash.sts.STS;
 import org.pokesplash.sts.api.Price;
+import org.pokesplash.sts.api.event.StsEvents;
+import org.pokesplash.sts.api.event.events.SellEvent;
 import org.pokesplash.sts.util.ImpactorService;
 import org.pokesplash.sts.util.Utils;
 
@@ -66,6 +68,7 @@ public class SellScreen {
 							UIManager.closeUI(sender);
 							e.getPlayer().sendSystemMessage(Component.literal(
 									Utils.formatPlaceholders(STS.lang.getSuccessMessage(), price, pokemon)));
+							StsEvents.SELL.trigger(new SellEvent(sender, pokemon));
 						} else {
 							// Otherwise, revert transaction and send the party removal failed message.
 							ImpactorService.remove(ImpactorService.getAccount(e.getPlayer().getUUID()),
