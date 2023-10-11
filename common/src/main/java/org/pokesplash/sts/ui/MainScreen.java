@@ -12,6 +12,7 @@ import ca.landonjw.gooeylibs2.api.template.types.ChestTemplate;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.item.CobblemonItem;
 import com.cobblemon.mod.common.item.PokemonItem;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.server.level.ServerPlayer;
