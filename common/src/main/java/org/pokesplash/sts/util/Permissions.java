@@ -21,6 +21,7 @@ public class Permissions {
 		permissions = new HashMap<>();
 		// Add you permissions here.
 		createPermission("BasePermission", "sts.base", 1);
+		createPermission("ReloadPermission", "sts.reload", 2);
 	}
 
 	/**

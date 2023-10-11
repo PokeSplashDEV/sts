@@ -7,6 +7,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import org.pokesplash.sts.STS;
+import org.pokesplash.sts.util.Permissions;
 import org.pokesplash.sts.util.Subcommand;
 import org.pokesplash.sts.util.Utils;
 
@@ -23,6 +24,14 @@ public class ReloadCommand extends Subcommand {
 	@Override
 	public LiteralCommandNode<CommandSourceStack> build() {
 		return Commands.literal("reload")
+				.requires(e -> {
+					if (e.isPlayer()) {
+						return STS.permissions.hasPermission(e.getPlayer(), STS.permissions.getPermission(
+								"ReloadPermission"));
+					} else {
+						return true;
+					}
+				})
 				.executes(this::run)
 				.build();
 	}
