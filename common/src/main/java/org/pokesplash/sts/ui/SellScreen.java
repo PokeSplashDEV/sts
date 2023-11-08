@@ -48,7 +48,7 @@ public class SellScreen {
 		// Creates the purchase button.
 		Button purchase = GooeyButton.builder()
 				.display(Utils.parseItemId(STS.lang.getPurchaseMaterial()))
-				.title("§2Confirm Purchase")
+				.title("§2Confirm Sale")
 				.onClick(e -> {
 					// Gets price
 					double price = Price.getPrice(pokemon);
@@ -69,6 +69,7 @@ public class SellScreen {
 							e.getPlayer().sendSystemMessage(Component.literal(
 									Utils.formatPlaceholders(STS.lang.getSuccessMessage(), price, pokemon)));
 							StsEvents.SELL.trigger(new SellEvent(sender.getUUID(), pokemon));
+							STS.logs.addBalance(sender.getUUID(), price);
 						} else {
 							// Otherwise, revert transaction and send the party removal failed message.
 							ImpactorService.remove(ImpactorService.getAccount(e.getPlayer().getUUID()),

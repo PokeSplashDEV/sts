@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.pokesplash.sts.command.basecommand.STSCommand;
 import org.pokesplash.sts.config.Config;
 import org.pokesplash.sts.config.Lang;
+import org.pokesplash.sts.config.Logs;
 import org.pokesplash.sts.util.CommandsRegistry;
 import org.pokesplash.sts.util.Permissions;
 
@@ -15,6 +16,7 @@ public class STS
 	public static final Config config = new Config();
 	public static final Lang lang = new Lang();
 	public static final Logger LOGGER = LogManager.getLogger();
+	public static final Logs logs = new Logs();
 
 	public static void init() {
 		// Adds command to registry
@@ -25,5 +27,6 @@ public class STS
 	public static void load() {
 		config.init();
 		lang.init();
+		logs.init();
 	}
 }
